@@ -1,0 +1,8 @@
+= ManageIQ YAML Deployment
+
+This repository contains the Dockerfile definition for an ManageIQ installation
+that is published through HTTP. This assumes you will change the ingress object
+to define your own certificates, and the SSL authentication will happen at the
+cluster level.
+
+
