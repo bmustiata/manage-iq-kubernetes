@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: manageiq
+  labels:
+    app: manageiq
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: manageiq
+  template:
+    metadata:
+      labels:
+        app: manageiq
+    spec:
+      containers:
+      - name: manageiq
+        image: manageiq/manageiq:hammer-1
+        ports:
+        - containerPort: 443
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: manageiq
+  labels:
+    app: manageiq
+spec:
+  type: NodePort
+  ports:
+  - port: 443
+    nodePort: 30443
+    protocol: TCP
+  selector:
+    app: manageiq
